@@ -237,7 +237,7 @@ export default function QuizScreen({
           <p className="text-center text-sm font-bold text-neutral-900">정답이에요!</p>
         )}
 
-        <div className="flex flex-1 items-center justify-center">
+        <div className="flex w-full flex-1 items-center justify-center">
           <Abacus
             key={`${problemIdx}-${partIdx}`}
             integerDigits={part.integerDigits ?? 6}

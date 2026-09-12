@@ -10,11 +10,10 @@ interface AbacusProps {
   onBeadMove?: (rodIndex: number, digit: number) => void;
 }
 
-const BEAD_H = 15;
-const BEAD_GAP = 6;
-const GROUP_GAP = 16;
-const ROD_W = 34;
-const BEAD_W = ROD_W - 14;
+const BEAD_H = 22;
+const BEAD_GAP = 8;
+const GROUP_GAP = 20;
+const ROD_MIN_W = 44;
 const BEAD_TRANSITION = "top 320ms cubic-bezier(0.34, 1.56, 0.64, 1)";
 
 const BEAD_SHAPE = "polygon(18% 0%, 82% 0%, 100% 50%, 82% 100%, 18% 100%, 0% 50%)";
@@ -34,7 +33,7 @@ function Bead({ top, active }: { top: number; active: boolean }) {
   return (
     <div
       className="absolute left-1/2 -translate-x-1/2"
-      style={{ top, width: BEAD_W, height: BEAD_H, transition: BEAD_TRANSITION }}
+      style={{ top, width: "78%", height: BEAD_H, transition: BEAD_TRANSITION }}
     >
       <div
         className="h-full w-full transition-colors duration-150"
@@ -73,8 +72,8 @@ function Rod({
 
   return (
     <div
-      className="relative flex flex-col items-center shrink-0"
-      style={{ width: ROD_W }}
+      className="relative flex flex-1 flex-col items-center"
+      style={{ minWidth: ROD_MIN_W }}
       data-rod={rodIndex}
     >
       <div className="pointer-events-none absolute left-1/2 top-0 h-full w-[3px] -translate-x-1/2 rounded-full bg-zinc-400" />
@@ -151,9 +150,9 @@ export default function Abacus({
   }
 
   return (
-    <div className="rounded-2xl border border-zinc-300 bg-white p-2.5 shadow-md">
+    <div className="w-full rounded-2xl border border-zinc-300 bg-white p-2.5 shadow-md">
       <div
-        className="flex justify-center gap-0.5 overflow-x-auto rounded-lg border border-zinc-200 bg-zinc-50 p-2"
+        className="flex w-full justify-center gap-1 overflow-x-auto rounded-lg border border-zinc-200 bg-zinc-50 p-2"
         data-testid="abacus"
       >
         {Array.from({ length: rodCount }, (_, i) => (
